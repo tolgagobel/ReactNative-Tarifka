@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react'
 import Category from './pages/Category';
 import Meal from './pages/Meal';
+import Detail from './pages/Detail';
 
 function Router() {
     const Stack = createNativeStackNavigator();
@@ -17,7 +18,12 @@ function Router() {
                 <Stack.Screen
                     name='Meals'
                     component={Meal}
-                    options={ { headerTintColor: '#FFA500' }}
+                    options={{ headerTintColor: '#FFA500' }}
+                />
+                <Stack.Screen
+                name='Detail'
+                component={Detail}
+                options={{ headerTintColor:'#FFA500'}}
                 />
             </Stack.Navigator>
         </NavigationContainer>

@@ -4,18 +4,19 @@ import useFetch from '../../hooks/useFetch';
 import Config from 'react-native-config';
 import MealCard from '../../components/MealCard';
 
-function Meal({ route }) {
+function Meal({ navigation, route }) {
     const strCategory = route.params.strCategory;
     const { data } = useFetch(`${Config.API_URL}filter.php?c=${strCategory}`);
 
-
-    console.log('====================================');
-    console.log(`${Config.API_URL}filter.php?c=`+strCategory);
-    console.log('====================================');
+    const handleSelect = idMeal => {
+        navigation.navigate('Detail',{idMeal});
+    }
 
     const renderMeal = ({ item }) => (
-        <MealCard meal={item} />
-    );
+        <MealCard meal={item} onSelect={() => handleSelect(item.idMeal)} />
+      );
+
+
     return (
         <SafeAreaView style={styles.container}>
             <FlatList
@@ -27,7 +28,7 @@ function Meal({ route }) {
 }
 const styles = StyleSheet.create({
     container: {
-        flex:1,
+        flex: 1,
         backgroundColor: '#FFA500',
     },
 });
